@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+
+
+<head>
+<title>Web Scraper</title>
+<link rel='stylesheet' type='text/css' href="{{ url_for('static', filename='css/stylesheet.min.css') }}" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.28.5/js/jquery.tablesorter.min.js"></script>
+<script src="{{ url_for('static', filename='js/index2.js') }}"></script>
+</head>
+
+<body>
+<h1>Amazon Kindle Scraper</h1>
+<div class="dropdown">
+    <h4>Select Genre:</h4>
+  <select class="dropbtn" id='genre-select'>
+  <div class="dropdown-content">
+      <option value='https://www.amazon.com/Best-Sellers-Kindle-Store-eBooks/zgbs/digital-text/154606011/'>
+    All
+</option>
+<option value='https://www.amazon.com/Best-Sellers-Kindle-Store-Arts-Photography/zgbs/digital-text/154607011/'>
+    Arts And Photography
+</option>
+<option value='https://www.amazon.com/Best-Sellers-Kindle-Store-Biographies-Memoirs/zgbs/digital-text/154754011/'>
+    Biographies And Memoirs
+</option>
+<option value='https://www.amazon.com/Best-Sellers-Kindle-Store-Business-Investing/zgbs/digital-text/154821011/'>
+    Business And Money
+</option>
+<option value='https://www.amazon.com/Best-Sellers-Kindle-Store-Childrens-eBooks/zgbs/digital-text/155009011/'>
+     Children's
+</option>
+<option value='https://www.amazon.com/Best-Sellers-Kindle-Store-Comics-Graphic-Novels/zgbs/digital-text/156104011/'>
+    Comics and Graphic Novels
+</option>
+    <option value='https://www.amazon.com/Best-Sellers-Kindle-Store-Computers-Technology/zgbs/digital-text/156116011/'>
+        Computers And Technology
+    </option>
+    <option value='https://www.amazon.com/Best-Sellers-Kindle-Store-Cookbooks-Food-Wine/zgbs/digital-text/156154011/'>
+        Cookbooks, Food and Wine
+    </option>
+    <option value='https://www.amazon.com/Best-Sellers-Kindle-Store-Crafts-Hobbies-Home/zgbs/digital-text/156699011/'>
+        Crafts, Hobbies And Home
+    </option>
+    <option value='https://www.amazon.com/Best-Sellers-Kindle-Store-Education-Teaching/zgbs/digital-text/158125011/'>
+        Education And Teaching
+    </option>
+    <option value='https://www.amazon.com/Best-Sellers-Kindle-Store-Engineering-Transportation/zgbs/digital-text/157626011/'>
+        Engineering And Transporation
+    </option>
+    <option value='https://www.amazon.com/Best-Sellers-Kindle-Store-Foreign-Language-eBooks/zgbs/digital-text/7735160011/'>
+        Foreign Languages
+    </option>
+    <option value='https://www.amazon.com/Best-Sellers-Kindle-Store-Health-Fitness-Dieting/zgbs/digital-text/156430011/'>
+        Health Fitness And Dieting
+    </option>
+    <option value='https://www.amazon.com/Best-Sellers-Kindle-Store-History/zgbs/digital-text/156576011/'>
+        History
+    </option>
+    <option value='https://www.amazon.com/Best-Sellers-Kindle-Store-Humor-Entertainment/zgbs/digital-text/156279011/'>
+        Humor and Entertainment
+    </option>
+    <option value='https://www.amazon.com/Best-Sellers-Kindle-Store-Law/zgbs/digital-text/156915011/'>
+        Law
+    </option>
+    <option value='https://www.amazon.com/Best-Sellers-Kindle-Store-LGBT-eBooks/zgbs/digital-text/156424011/'>
+        LGBT
+    </option>
+    <option value='https://www.amazon.com/Best-Sellers-Kindle-Store-Literature-Fiction/zgbs/digital-text/157028011/'>
+        Literature and Fiction
+    </option>
+    <option value='https://www.amazon.com/Best-Sellers-Kindle-Store-Medical-eBooks/zgbs/digital-text/157119011/'>
+        Medical
+    </option>
+    <option value='https://www.amazon.com/Best-Sellers-Kindle-Store-Mystery-Thriller-Suspense/zgbs/digital-text/157305011/'>
+        Mystery, Thriller and Suspense
+    </option>
+    <option value='https://www.amazon.com/Best-Sellers-Kindle-Store-Nonfiction/zgbs/digital-text/157325011/'>
+        Non-Fiction
+    </option>
+    <option value='https://www.amazon.com/Best-Sellers-Kindle-Store-Parenting-Relationships/zgbs/digital-text/157584011/'>
+        Parenting and Relationships
+    </option>
+    <option value='https://www.amazon.com/Best-Sellers-Kindle-Store-Reference-eBooks/zgbs/digital-text/9154158011/'>
+        Reference
+    </option>
+    <option value='https://www.amazon.com/Best-Sellers-Kindle-Store-Religion-Spirituality/zgbs/digital-text/158280011/'>
+        Religion and Spirituality
+    </option>
+    <option value='https://www.amazon.com/Best-Sellers-Kindle-Store-Romance/zgbs/digital-text/158566011/'>
+        Romance
+    </option>
+    <option value='https://www.amazon.com/Best-Sellers-Kindle-Store-Science-Math/zgbs/digital-text/158597011/'>
+        Science and Math
+    </option>
+    <option value='https://www.amazon.com/Best-Sellers-Kindle-Store-Science-Fiction-Fantasy/zgbs/digital-text/668010011/'>
+        Science Fiction and Fantasy
+    </option>
+    <option value='https://www.amazon.com/Best-Sellers-Kindle-Store-Self-Help/zgbs/digital-text/156563011/'>
+        Self-Help
+    </option>
+    <option value='https://www.amazon.com/Best-Sellers-Kindle-Store-Sports-Outdoors/zgbs/digital-text/159818011/'>
+        Sports and Outdoors
+    </option>
+    <option value='https://www.amazon.com/Best-Sellers-Kindle-Store-Teen-Young-Adult-eBooks/zgbs/digital-text/3511261011/'>
+        Teen and Young Adult
+    </option>
+    <option value='https://www.amazon.com/Best-Sellers-Kindle-Store-Travel/zgbs/digital-text/159936011/'>
+        Travel
+    </option>
+</select>
+
+<button class="dropbtn" id='get-results'>Get Results</button>
+</div>
+</div>
+<table id="info" class="tablesorter">
+  <thead class='table-heading'>
+  <tr>
+    <th class='heading' role='columnheader'><h3>Author </h3></th>
+    <th class='heading' role='columnheader'><h3>Title</h3></th>
+    <th class='heading' role='columnheader'><h3>Price</h3></th>
+    <th class='heading' role='columnheader'><h3>ASIN</h3></th>
+    <th class='heading' role='columnheader'><h3>Link</h3></th>
+
+  </tr></thead><tbody id='info-body'>
+  </tbody>
+</table>
+<div class="modal"><!-- Place at bottom of page --></div>
+</body>
+</html>
