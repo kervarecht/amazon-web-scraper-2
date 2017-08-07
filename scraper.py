@@ -32,9 +32,7 @@ def amazon_deals(url):
         results_content = parsed_amazon_results.body.find_all('div', attrs={'class', 'zg_itemWrapper'})
 
         link_content = []
-        #This code occasionally causes a list index out of range error
-        #need to tweak the attributes it searches for in the soup
-
+        
         deals = []
 
         for each in results_content:

@@ -4,9 +4,13 @@
 
 <head>
 <title>Web Scraper</title>
+<!-- CSS Links, local and jQuery UI -->
 <link rel='stylesheet' type='text/css' href="{{ url_for('static', filename='css/stylesheet.min.css') }}" />
+<link rel='stylesheet' type='text/css' href="https://code.jquery.com/ui/1.11.3/themes/smoothness/jquery-ui.css" />
+<!-- JS Links - jQuery, jQuery UI, tablesorter -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.28.5/js/jquery.tablesorter.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
 <script src="{{ url_for('static', filename='js/index2.js') }}"></script>
 </head>
 
@@ -112,6 +116,15 @@
 </select>
 
 <button class="dropbtn" id='get-results'>Get Results</button>
+<div id="slider-div">
+
+<p>
+  <label for="amount">Price range:</label>
+  <input type="text" id="amount" readonly style="border:0; font-weight:bold;">
+</p>
+
+<div id="slider-range"></div>
+</div>
 </div>
 </div>
 <table id="info" class="tablesorter">

@@ -1,6 +1,38 @@
 $(document).ready(function() {
+    var minPrice;
+    var maxPrice;
+    //initializing slider
+    $("#slider-range" ).slider({
+      range: true,
+      min: 0,
+      max: 40,
+      values: [ 0, 40 ],
+      slide: function( event, ui ) {
+        $( "#amount" ).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
+        minPrice = ui.values[0];
+        maxPrice = ui.values[1];
+    }
+    });
+    $( "#amount" ).val( "$" + $( "#slider-range" ).slider( "values", 0 ) +
+      " - $" + $( "#slider-range" ).slider( "values", 1 ) );
 
-    $('#get-results').on('click', function() {
+      //table filter function based on slider
+      $('.ui-slider-handle').on('click', function(event, ui){
+          $('tbody tr td:nth-child(3)').each(function(){
+             var price = $(this).html().replace('$', "");
+             price = parseFloat(price);
+             if (price <= maxPrice && price >= minPrice){
+                 $(this).parent().css('display', 'display');
+             }
+             else {
+                 $(this).parent().css('display', 'none');
+             }
+          });
+      });
+
+
+      //AJAX call in here
+      $('#get-results').on('click', function() {
         $('body').addClass("loading");
         var dataToSend = $('#genre-select').val();
         $('#info').css('visibility', 'hidden');

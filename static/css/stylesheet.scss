@@ -24,6 +24,29 @@
 
 }
 
+#slider-div {
+    color: #072646;
+    width: 50%;
+    margin-right: 1em;
+    display: inline-block;
+    float: right;
+    .ui-slider-handle {
+        background-color: #072646;
+        &:hover {
+            background-color: #1058a3;
+        }
+        &:active {
+            background-color: #1058a3;
+        }
+    }
+    label {
+        color: #072646;
+    }
+    input {
+        background: transparent;
+    }
+}
+
 #genre-select {
     &:hover {
         background-color: #0d4884;
@@ -194,7 +217,10 @@ th {
 }
 
 table {
-  width: 100%;
+  width: 96%;
+  margin-left: 2%;
+  margin-right:2%;
+  margin-top: 2em;
 }
 
 .modal {
